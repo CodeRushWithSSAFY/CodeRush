@@ -16,7 +16,7 @@
    - 1주차: `FEB_1WEEK/`
    - 2주차: `FEB_2WEEK/`
    - 3주차: `FEB_3WEEK/`
-   - 4주차: `FEB_4WEEK/
+   - 4주차: `FEB_4WEEK/`
 4. 파일명 규칙: `이름.java`
    - 예시: `FEB_1WEEK/비밀메뉴2/정한슬.java`
 6. 코드 공유가 목적이므로 commit message 제한은 두지 않겠습니다.
