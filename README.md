@@ -1,4 +1,23 @@
 # CodeRush: 알고리즘 코테 풀이 스터디 (2월)
+## 스터디 멤버
+| 이름       | GitHub 닉네임       |
+|------------|---------------------|
+| 김준혁     | [peridot0810](https://github.com/peridot0810) |
+| 박재환     | [ParkJaeHwan-906](https://github.com/ParkJaeHwan-906) |
+| 이수빈     | [200516bb](https://github.com/200516bb) |
+| 정연수     | [cheesecrust](https://github.com/cheesecrust) |
+| 정한슬     | [HanSeulChung](https://github.com/HanSeulChung) |
+
+## 문제 풀이 후 Push 방법
+1. 본인의 코드를 스터디 저장소에 **주차별 폴더**와 **문제 이름** 기준으로 정리합니다.
+2. 파일 경로 규칙: `FEB_1WEEK/문제이름/GitHub닉네임`
+   - 예시: `FEB_1WEEK/비밀메뉴 2/cheesecrust`
+3. 각 주차별로 동일한 구조를 유지합니다:
+   - 1주차: `FEB_1WEEK/`
+   - 2주차: `FEB_2WEEK/`
+   - 3주차: `FEB_3WEEK/`
+   - 4주차: `FEB_4WEEK/
+4. 코드 공유가 목적이므로 commit message 제한은 두지 않겠습니다.
 
 ## 2월 1주차 (2월 3일 ~ 2월 9일)
 | 날짜       | 문제 이름                        | 문제 링크 |
