@@ -43,7 +43,7 @@ public class 박재환 {
             }
         }
 
-        no_6251 problem = new no_6251();
+        박재환 problem = new 박재환();
         System.out.println(problem.solution(r));
     }
 
