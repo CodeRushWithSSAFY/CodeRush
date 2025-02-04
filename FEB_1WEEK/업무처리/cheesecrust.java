@@ -29,9 +29,7 @@ class Employee {
         if (isLeaf) {
             if (leftQ.isEmpty() && !rightQ.isEmpty()) return rightQ.poll();
             else if (rightQ.isEmpty() && !leftQ.isEmpty()) return leftQ.poll();
-            else {
-                return null;
-            }
+            else return null;
         } else {
             if (date % 2 == 0) {
                 if (rightQ.isEmpty()) return null;
@@ -44,11 +42,8 @@ class Employee {
     }
 
     void addWork(int who, int work) {
-        if (who % 2 == 0) {
-            leftQ.add(work);
-        } else {
-            rightQ.add(work);
-        }
+        if (who % 2 == 0) leftQ.add(work);
+        else rightQ.add(work);
     }
 }
 
