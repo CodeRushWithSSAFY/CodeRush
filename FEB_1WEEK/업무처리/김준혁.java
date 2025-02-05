@@ -1,11 +1,11 @@
-package FEB_1WEEK_2;
+package Solution;
 
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 import java.util.Queue;
-import java.util.LinkedList;
 
 /**
  * 
@@ -29,73 +29,79 @@ public class Main {
 	public static int workDay; 	// R
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+       
+        height = Integer.parseInt(st.nextToken());
+        taskNum = Integer.parseInt(st.nextToken());
+        workDay = Integer.parseInt(st.nextToken());
 		
-		height = sc.nextInt();
-		taskNum = sc.nextInt();
-		workDay = sc.nextInt();
-		
-		
-		tree = BinaryTree.init(height, taskNum, sc);
+		// 이진 트리 초기화 
+		tree = BinaryTree.init(height, taskNum, st, br);
 		sum = 0;
-		Node root = tree[0];
 		
 		
+		Node rootNode = tree[0];
 		int day = 1;
+		
 		while(day <= workDay) {
+			boolean oddDay = day % 2 == 1;
 			
-			// root 
-			if(day % 2 == 1) {
-				if(!root.taskLeftQueue.isEmpty()) {
-					sum += root.taskLeftQueue.poll();
+			// rootNode 
+			if(oddDay) {	// 홀수 날짜 : 왼쪽 큐 확인
+				if(!rootNode.taskLeftQueue.isEmpty()) {
+					sum += rootNode.taskLeftQueue.poll();
 				}
-			}else {
-				if(!root.taskRightQueue.isEmpty()) {
-					sum += root.taskRightQueue.poll();
+			}else {				// 짝수 날짜 : 오른쪽 큐 확인
+				if(!rootNode.taskRightQueue.isEmpty()) {
+					sum += rootNode.taskRightQueue.poll();
 				}
 			}
 			
-			// not root
-			for(int nodeIdx = 1; nodeIdx < BinaryTree.nodeNum; nodeIdx++) {
-				Node currNode = tree[nodeIdx];
-				if(currNode instanceof LeafNode) { // 리프 노드일때 
-                    LeafNode leaf = (LeafNode)currNode;
-					if(!leaf.taskQueue.isEmpty()) {
-						if(leaf.isLeft) {
-							tree[leaf.parentIdx].taskLeftQueue.add(leaf.taskQueue.poll());
-						}else {
-							tree[leaf.parentIdx].taskRightQueue.add(leaf.taskQueue.poll());
-						}
-					}
-				}else if(day % 2 == 1) {	// 홀수 날짜일 때  
+			// 일반 노드 => 노드 배열 순회 
+			for(int nodeIdx = 1; nodeIdx < BinaryTree.nonLeafNum; nodeIdx++) {
+				Node currNode = tree[nodeIdx];				// 현재 노드
+				Node parentNode = tree[currNode.parentIdx]; // 부모 노드
+				
+				if(oddDay) {	// 홀수 날짜일 때 : 왼쪽 큐 확인
 					if(!currNode.taskLeftQueue.isEmpty()) {
-						if(currNode.isLeft) {
-							tree[currNode.parentIdx].taskLeftQueue.add(currNode.taskLeftQueue.poll());
-						}else {
-							tree[currNode.parentIdx].taskRightQueue.add(currNode.taskLeftQueue.poll());
+						if(currNode.isLeft) {	// 본인이 왼쪽 자식이면 부모의 왼쪽 큐에 업무 추가
+							parentNode.taskLeftQueue.add(currNode.taskLeftQueue.poll());
+						}else {					// 본인이 오른쪽 자식이면 부모의 오른쪽 큐에 업무 추가
+							parentNode.taskRightQueue.add(currNode.taskLeftQueue.poll());
 						}
 					}
-				}else {	// 짝수 날짜일 때  
+				}else {						// 짝수 날짜일 때 : 오른쪽 큐 확인
 					if(!currNode.taskRightQueue.isEmpty()) {
-						if(currNode.isLeft) {
-							tree[currNode.parentIdx].taskLeftQueue.add(currNode.taskRightQueue.poll());
-						}else {
-							tree[currNode.parentIdx].taskRightQueue.add(currNode.taskRightQueue.poll());
+						if(currNode.isLeft) {	// 본인이 왼쪽 자식이면 부모의 왼쪽 큐에 업무 추가
+							parentNode.taskLeftQueue.add(currNode.taskRightQueue.poll());
+						}else {					// 본인이 오른쪽 자식이면 부모의 오른쪽 큐에 업무 추가
+							parentNode.taskRightQueue.add(currNode.taskRightQueue.poll());
 						}
 					}
 				
 				}
 			}
 			
+			// 리프 노드일때 => 날짜 상관없이 업무 처리
+			for(int nodeIdx = BinaryTree.nonLeafNum; nodeIdx < BinaryTree.nodeNum; nodeIdx++) {
+                LeafNode leaf = (LeafNode)tree[nodeIdx];	// 현재 노드
+                Node parentNode = tree[leaf.parentIdx]; 	// 부모 노드
+				if(!leaf.taskQueue.isEmpty()) {
+					if(leaf.isLeft) {	// 본인이 왼쪽 자식이면 부모의 왼쪽 큐에 업무 추가 
+						parentNode.taskLeftQueue.add(leaf.taskQueue.poll());
+					}else {				// 본인이 오른쪽 자식이면 부모의 오른쪽 큐에 업무 추가 
+						parentNode.taskRightQueue.add(leaf.taskQueue.poll());
+					}
+				}
+			}
+			
 			day++;
 		}
 		
-		
-		
 		System.out.println(sum);
-		sc.close();
 		
 	}
 }
@@ -104,25 +110,21 @@ public class Main {
 
 class Node {
 	
-	
-	public int childLeftIdx, childRightIdx;
 	public int parentIdx;
 	public Queue<Integer> taskLeftQueue;
 	public Queue<Integer> taskRightQueue;
 	public boolean isLeft;
 	
 	
-	
 	Node(boolean isLeft, int idx){
-		this.taskLeftQueue = new LinkedList<Integer>();
-		this.taskRightQueue = new LinkedList<Integer>();
+		this.taskLeftQueue = new ArrayDeque<Integer>();
+		this.taskRightQueue = new ArrayDeque<Integer>();
 		this.isLeft = isLeft;
-		this.childLeftIdx = idx * 2 + 1;
-		this.childRightIdx = idx * 2 + 2;
 		this.parentIdx = (int)Math.floor((idx-1)/2);
 	}
 	
 }
+
 
 class LeafNode extends Node{
 	
@@ -130,7 +132,7 @@ class LeafNode extends Node{
 	
 	LeafNode(boolean isLeft, int idx) {
 		super(isLeft, idx);
-		this.taskQueue = new LinkedList<Integer>();
+		this.taskQueue = new ArrayDeque<Integer>();
 	}
 	
 }
@@ -141,16 +143,19 @@ class BinaryTree {
 	
 	public static Node[] tree;
 	public static int nodeNum;
+	public static int leafNum;
+	public static int nonLeafNum;
 	
 	
-	public static Node[] init(int height, int taskNum, Scanner sc) {
+	public static Node[] init(int height, int taskNum, StringTokenizer st, BufferedReader br) throws IOException {
 		
 		nodeNum = (int)Math.pow(2, height + 1) - 1;
-		int leafNum = (int)Math.pow(2, height);
-		int nonLeafNum = nodeNum - leafNum;
+		leafNum = (int)Math.pow(2, height);
+		nonLeafNum = nodeNum - leafNum;
 		
 		tree = new Node[nodeNum];
 		
+		// 일반 노드
 		for(int i = 0; i < nonLeafNum; i++) {
 			if(i%2 == 1) {	// 홀수 : LeftChild
 				tree[i] = new Node(true, i);
@@ -159,6 +164,7 @@ class BinaryTree {
 			}
 		}
 		
+		// 리프 노드 
 		for(int i = nonLeafNum; i < nodeNum; i++) {
 			LeafNode leafNode;
 			if(i%2 == 1) {	// 홀수 : LeftChild
@@ -167,8 +173,10 @@ class BinaryTree {
 				leafNode = new LeafNode(false, i);
 			}
 			
+			// 업무 입력받기
+			st = new StringTokenizer(br.readLine());
 			for(int j = 0; j < taskNum; j++) {
-				leafNode.taskQueue.add(sc.nextInt());
+				leafNode.taskQueue.add(Integer.parseInt(st.nextToken()));
 			}
 			
 			tree[i] = leafNode;
