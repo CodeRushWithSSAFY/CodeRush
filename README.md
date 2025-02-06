@@ -1,25 +1,55 @@
-# CodeRush: 알고리즘 코테 풀이 스터디 (2월)
-## 스터디 멤버
-| 이름       | GitHub 닉네임       |
-|------------|---------------------|
-| 김준혁     | [peridot0810](https://github.com/peridot0810) |
-| 박재환     | [ParkJaeHwan-906](https://github.com/ParkJaeHwan-906) |
-| 이수빈     | [200516bb](https://github.com/200516bb) |
-| 정연수     | [cheesecrust](https://github.com/cheesecrust) |
-| 정한슬     | [HanSeulChung](https://github.com/HanSeulChung) |
+# ⚡ CodeRush: 알고리즘 코테 풀이 스터디 (2월)  
 
-## 문제 풀이 후 Push 방법
-1. 본인의 코드를 스터디 저장소에 **주차별 폴더**와 **문제 이름** 기준으로 정리합니다.
-2. 파일 경로 규칙: `FEB_1WEEK/문제이름`
+## 🏆 스터디 개요  
+- **목표**: 알고리즘 문제 풀이 실력 향상 및 효율적인 코드 리뷰 진행  
+- **운영 방식**: 주 6문제 풀이 + 코드 리뷰 및 피드백  
+- **리뷰 일정**: 매주 **목요일** 진행  
+
+---
+
+## 👥 스터디 멤버  
+| 이름   | GitHub 닉네임 |
+|--------|--------------|
+| 김준혁 | [peridot0810](https://github.com/peridot0810) |
+| 박재환 | [ParkJaeHwan-906](https://github.com/ParkJaeHwan-906) |
+| 이수빈 | [200516bb](https://github.com/200516bb) |
+| 정연수 | [cheesecrust](https://github.com/cheesecrust) |
+| 정한슬 | [HanSeulChung](https://github.com/HanSeulChung) |
+
+---
+
+## 🚀 스터디 운영 방식  
+### 📌 1. 주간 문제 풀이  
+- **일주일에 6문제 풀이**  
+- 각 팀원이 **1문제씩 담당하여 목요일 회의에서 설명할 수 있도록 완벽히 이해하는 것**이 목표.  
+
+### 📌 2. 브랜치 및 PR 운영  
+- **브랜치 규칙:** `닉네임/문제이름`  
+  - 예시: `HanSeulChung/비밀메뉴2`
+- **PR 작성 및 코드 리뷰**  
+  - 풀이한 코드를 **push & PR 제출**  
+  - 주차별 PR을 모두 확인하고 **코멘트, 이모지, 확인 표시**로 리뷰 진행  
+- **PR 제목 형식:**
+   -  [주차] 문제 이름 - 닉네임
+   - 예시:  `[2주차] 나무 섭지 - 정한슬`
+- **PR 내용:** PR 템플릿 활용  
+- **PR Merge 규칙:**  주 회의(목요일) 후 모든 PR Merge
+### 📌 3. 문제 풀이 후 Push 방법
+- 본인의 코드를 스터디 저장소에 **주차별 폴더**와 **문제 이름** 기준으로 정리합니다.
+- 파일 경로 규칙: `FEB_1WEEK/문제이름`
    - 예시: `FEB_1WEEK/비밀메뉴2`
-3. 각 주차별로 동일한 구조를 유지합니다:
+-  각 주차별로 동일한 구조를 유지
    - 1주차: `FEB_1WEEK/`
    - 2주차: `FEB_2WEEK/`
    - 3주차: `FEB_3WEEK/`
    - 4주차: `FEB_4WEEK/`
-4. 파일명 규칙: `이름.java`
+- 파일명 규칙: `이름.java`
    - 예시: `FEB_1WEEK/비밀메뉴2/정한슬.java`
-6. 코드 공유가 목적이므로 commit message 제한은 두지 않겠습니다.
+- 코드 공유가 목적이므로 commit message 제한은 두지 않겠습니다.
+
+📢 **공지:**  
+✅ 본 규칙은 **2주차(FEB_2WEEK)부터 적용됩니다.**  
+✅ 1주차(FEB_1WEEK) 문제는 기존 방식대로 진행되었습니다.  
 
 ## 2월 1주차 (2월 3일 ~ 2월 9일)
 | 날짜       | 문제 이름                        | 문제 링크 |
