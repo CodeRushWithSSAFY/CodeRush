@@ -22,7 +22,7 @@ public class 정한슬 {
   public static void main(String[] args) throws IOException {
 
     initConflictMap(); // 충돌 맵 저장
-
+// test
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.parseInt(br.readLine().trim());
 
