@@ -1,4 +1,3 @@
-package feb_1week_3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.StringTokenizer;
  * #0. 클래스 및 변수  
  * 	0-1. class Road : 각 도로(A, B, C, D)를 표현하는 클래스
  * 		- Road rightRoad		: 오른쪽 도로 객체
- * 		- Road leftRoad 		: 왼쪽 도로 객체  
  * 		- boolean rightIsEmpty 	: 오른쪽 도로가 비었는지 여부 
  * 		- Queue<Car> queue 		: 현재 도로에 진입한 차량을 보관하는 큐 
  * 
@@ -57,16 +55,10 @@ import java.util.StringTokenizer;
  *  2-3. 교착 상태라면 false를 반환하고, result의 남은 인덱스 모두 -1로 수정해야 함(solve 메서드에서)
  * 
  * 
- * 
- * 
  * #3. 정답 출력 : result[] 의 값을 차례대로 출력  
- * 	
- * 
- * 
+ *
  * 
  */
-
-
 
 
 public class Main {
@@ -76,38 +68,40 @@ public class Main {
 	public static int t = 0;
 	public static int passedNum = 0;  // 통과한 차량 개수 
 	public static int[] result;
-	public static Queue<Car> carList = new ArrayDeque<>();
-	public static Road A = new Road();
-	public static Road B = new Road();
-	public static Road C = new Road();
-	public static Road D = new Road();
-	public static Road[] roads = {A, B, C, D};
 	
+	public static Road[] roads = new Road[4];
 	
 	
 	public static void main(String[] args) throws IOException {
+		
+		// Road 객체들의 rightRoad 설정 
+		for(int roadIdx = 0; roadIdx < 4; roadIdx++) {
+			roads[roadIdx] = new Road();
+		}
+				
+		roads[0].rightRoad = roads[3];	// A의 오른쪽 : D 
+		roads[1].rightRoad = roads[0];	// B의 오른쪽 : A 
+		roads[2].rightRoad = roads[1];	// C의 오른쪽 : B 
+		roads[3].rightRoad = roads[2];	// D의 오른쪽 : C 
 		
 		// 입력 받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		carNum = Integer.parseInt(st.nextToken());
 		result = new int[carNum];
+		for(int idx = 0; idx < carNum; idx++) {
+			result[idx] = -1;
+		}
 		
 		for(int idx = 0; idx < carNum; idx++) {
 			st = new StringTokenizer(br.readLine());
 			int time = Integer.parseInt(st.nextToken());
-			char road = st.nextToken().charAt(0);
+			int roadIdx = st.nextToken().charAt(0) - 'A';
 			int number = idx;
 			
-			carList.add(new Car(time, road, number));
+			// 해당 도로의 carList에 추가 
+			roads[roadIdx].carList.add(new Car(time, number));
 		}
-		
-		
-		// Road 객체들의 leftRoad 설정 
-		A.leftRoad = B;	// A의 왼쪽 : B 
-		B.leftRoad = C;	// B의 왼쪽 : C 
-		C.leftRoad = D;	// C의 왼쪽 : D 
-		D.leftRoad = A;	// D의 왼쪽 : A 
 		
 		
 		// 문제 풀이 메서드 호출 
@@ -120,32 +114,20 @@ public class Main {
 	
 	
 	public static void solve() {
-		boolean pass;
+		boolean finish;
 		
 		while(true) {
-			for(int idx = 0; idx < 4; idx++) {	// 같은 진입시간을 가지고 서로 다른 도로를 가지는 Car는 최대 4개 
-				Car firstCar = carList.peek();
-				
-				// Car가 있으면서 현재 시간 t와 Car의 진입시간이 같으면 
+			for(Road road : roads) {	 
+				Car firstCar = road.carList.peek();
+				// Car가 있으면서 현재 시간 t와 Car의 진입시간이 같으면 => waitQueue에 추가 
 				if(firstCar != null && firstCar.time == t) {
-					pushCarToRoad(firstCar);
-					carList.poll();
+					road.waitQueue.add(road.carList.poll());
 				}
-				else break;
 			}
 			
-			pass = passCar();
+			finish = passCar();
 			
-			if(!pass) {
-				// 남은 인덱스 -1로 수정
-				for(Road road : roads) {
-					while(road.queue.peek() != null) {
-						result[road.queue.poll().number] = -1;
-					}
-				}
-				
-				break;
-			}
+			if(finish) break;
 			
 			t++;
 			
@@ -154,46 +136,34 @@ public class Main {
 	}
 	
 	
-	
-	
 	public static boolean passCar() {
 		int notEmptyRoadNum = 0;
 		
-		// 오른쪽 도로 비었는지 체크  
 		for(Road road : roads) {
-			if(!road.queue.isEmpty()) {
-				road.leftRoad.rightIsEmpty = false;
-				notEmptyRoadNum++;
+			if(road.rightRoad.waitQueue.isEmpty()) {
+				if(!road.waitQueue.isEmpty()) {
+					Car car = road.waitQueue.peek();
+					result[car.number] = t;
+					road.carPassed = true;
+					passedNum++;
+				}
 			}else {
-				road.leftRoad.rightIsEmpty = true;
+				notEmptyRoadNum++;
 			}
 		}
 		
-		// 모든 도로가 비어있지 않다면 => 교착상태 
-		if(notEmptyRoadNum == 4) return false;
-		
-		// 교차로 통과 
 		for(Road road : roads) {
-			if(road.rightIsEmpty && !road.queue.isEmpty()) {
-				Car car = road.queue.poll();
-				result[car.number] = t;
-				passedNum++;
+			if(road.carPassed) {
+				road.waitQueue.poll();
+				road.carPassed = false;
 			}
 		}
-		System.out.println("pass Num " + passedNum);
-		if(passedNum == carNum) return false;
 		
-		return true;
+		
+		if(notEmptyRoadNum == 4 || passedNum == carNum) return true;
+		
+		return false;
 	}
-	
-	
-	public static void pushCarToRoad(Car car) {
-		if(car.road == 'A') A.queue.add(car);
-		else if(car.road == 'B') B.queue.add(car);
-		else if(car.road == 'C') C.queue.add(car);
-		else if(car.road == 'D') D.queue.add(car);
-	}
-	
 	
 	
 }
@@ -202,13 +172,15 @@ public class Main {
 
 
 class Road{
-	public Road leftRoad;  
-	public boolean rightIsEmpty; 
-	public Queue<Car> queue;
+	public Road rightRoad;  
+	public Queue<Car> waitQueue;
+	public Queue<Car> carList;
+	public boolean carPassed;
 	
 	public Road() {
-		this.rightIsEmpty = true;
-		this.queue = new ArrayDeque<Car>();
+		this.carList = new ArrayDeque<Car>();
+		this.waitQueue = new ArrayDeque<Car>();
+		this.carPassed = false;
 	}
 }
 
@@ -216,15 +188,14 @@ class Road{
 
 class Car{
 	public int time;
-	public char road; 
 	public int number; 
 	
-	public Car(int time, char road, int number) {
+	public Car(int time, int number) {
 		this.time = time;
-		this.road = road;
 		this.number = number;
 	}
 }
+
 
 
 
