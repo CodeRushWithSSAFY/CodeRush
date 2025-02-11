@@ -52,7 +52,10 @@ public class 박재환 {
     public int getMax() {
         answer = Integer.MIN_VALUE;
 
-
+        int x = friends[0][0];
+        int y = friends[0][1];
+        visited[x][y] = true;
+        work(x, y, 0, map[x][y], 0);
 
         return answer;
     }
