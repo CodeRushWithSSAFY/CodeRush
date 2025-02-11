@@ -67,7 +67,7 @@
 | 2월 10일 (월) | 효도 음식                        | [문제 링크](https://softeer.ai/practice/7367) |
 | 2월 11일 (화) | 징검다리                         | [문제 링크](https://softeer.ai/practice/6293) |
 | 2월 12일 (수) | 나무 섭지                        | [문제 링크](https://softeer.ai/practice/7726) |
-| 2월 13일 (목) | 함께하는 효도                    | [문제 링크](https://softeer.ai/practice/7367) |
+| 2월 13일 (목) | 함께하는 효도                    | [문제 링크](https://softeer.ai/practice/7727) |
 | 2월 14일 (금) | 나무 수확                        | [문제 링크](https://softeer.ai/practice/7369) |
 | 2월 16일 (일) | 슈퍼컴퓨터 클러스터              | [문제 링크](https://softeer.ai/practice/6252) |
 
