@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
-
+/*
+    스타트 캠프때 푼 2번 문제와 같습니다. 
+    1. 
+*/
 public class Main {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static StringTokenizer st;
@@ -14,7 +17,6 @@ public class Main {
         for (int i = 1; i <= N; i++) {
             stoneArr[i] = Integer.parseInt(st.nextToken());
         }
-
         int answer = 0;
         for (int i = 1; i <= N; i++) {
             for (int j = 0; j < i; j++) {
@@ -24,7 +26,6 @@ public class Main {
             }
             answer = Math.max(answer, answerArr[i]);
         }
-
         System.out.println(answer);
     }
 }
