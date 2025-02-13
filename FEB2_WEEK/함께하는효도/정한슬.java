@@ -8,68 +8,86 @@ import java.util.*;
     단, 처음 위치에서 진행 중에 친구들의 경로는 겹칠 수 있다.
     겹친 경우 (싸워서 이긴) 사람이 그 열매를 수확할 수 있다. (진 사람은 열매 수확 X)
 */
-public class Main {
-  private static final int[] dr = {1, 0, -1, 0};
-  private static final int[] dc = {0, 1, 0, -1};
-  private static int n;
-  private static int m;
-  private static int[][] appleTrees;
-  private static int[][] friendPos;
-  private static int maxAppleSum = Integer.MIN_VALUE;
+public class 정한슬 {
+  static final int MAX_TIME = 3;
+  static final int[] dr = {1, 0, -1, 0};
+  static final int[] dc = {0, 1, 0, -1};
 
-  public static void main(String[] args) throws IOException {
+  // 최종적으로 비교해서 최대값으로 갱신할 static 변수
+  static int fruitMaxSum = Integer.MIN_VALUE;
+  static int[][] friendPositions;
+  static int[][] tree;
+
+  public static void main(String[] args)  throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
     StringTokenizer st = new StringTokenizer(br.readLine().trim());
+    int treeSize = Integer.parseInt(st.nextToken());
+    int friendsCount = Integer.parseInt(st.nextToken());
+    tree = new int[treeSize][treeSize];          // 열매값이 저장 되어 있는 나무 배열
+    friendPositions = new int[friendsCount][2]; // 친구들의 초기 위치를 담는 배열
 
-    n = Integer.parseInt(st.nextToken());
-    m = Integer.parseInt(st.nextToken());
-
-    appleTrees = new int[n][n];
-    for (int row = 0; row < n; row++) {
+    // 입력 값으로 나무 배열 저장
+    for (int row = 0; row < treeSize; row++) {
       st = new StringTokenizer(br.readLine().trim());
-      for (int col = 0; col < n; col++) {
-        appleTrees[row][col] = Integer.parseInt(st.nextToken());
+      for (int col = 0; col < treeSize; col++) {
+        tree[row][col] = Integer.parseInt(st.nextToken());
       }
     }
 
-    int appleSum = 0;
-    friendPos = new int[m][2];
-    for (int friend = 0; friend < m; friend++) {
+    // 열매 총 합을 저장
+    int fruitSum = 0;
+    // 입력 값으로 친구 위치 저장
+    for (int friendIdx = 0; friendIdx < friendsCount; friendIdx++){
       st = new StringTokenizer(br.readLine().trim());
-      int r = Integer.parseInt(st.nextToken()) - 1;
-      int c = Integer.parseInt(st.nextToken()) - 1;
-      friendPos[friend] = new int[]{r, c};
-      appleSum += appleTrees[r][c];
-      appleTrees[r][c] = 0; // 이미 먹은 사과는 0으로 처리, 0초부터 사과를 딸 수 있으니 미리 처리함
+      int friendRow = Integer.parseInt(st.nextToken()) - 1;
+      int friendCol = Integer.parseInt(st.nextToken()) - 1;
+      friendPositions[friendIdx][0] = friendRow;
+      friendPositions[friendIdx][1] = friendCol;
+      // 0초 부터 열매를 수확할 수 있기 때문에 열매 총합에 미리 저장
+      fruitSum += tree[friendRow][friendCol];
+      tree[friendRow][friendCol] = 0; // 한 번 수확한 열매는 다시 수확할 수 없기 때문에 0으로 초기화
     }
 
-    pickAppleInThreeSecond(0, 0, friendPos[0][0], friendPos[0][1], appleSum);
+    pickFruits(0, friendsCount, 0, friendPositions[0][0], friendPositions[0][1], fruitSum);
 
-    System.out.println(maxAppleSum);
+    br.close();
+    bw.flush();
+    bw.write(String.valueOf(fruitMaxSum));
+    bw.close();
   }
-  private static boolean isInBoard(int row, int col) {
-    return row >= 0 && col >= 0 && row < n && col < n;
-  }
-  private static void pickAppleInThreeSecond(int time, int friendCnt, int r, int c, int tmpApplSum) {
-    if (time == 3) {// 3초이내만 사과를 딸 수 있다.
-      if (friendCnt == m - 1) {
-        maxAppleSum = Math.max(maxAppleSum, tmpApplSum);
-        return;
+
+  private static void pickFruits(int friendIdx, int friendsCount, int time, int row, int col, int fruitSum) {
+    // 시간이 3초면 열매 수확 할 수 없음
+    if (time == MAX_TIME) {
+      // 열매 수확할 친구가 없을 때 최종으로 딴 열매 총 합 값과 max값 비교
+      if (friendIdx == friendsCount - 1) {
+        fruitMaxSum = Math.max(fruitMaxSum, fruitSum);
+      } else {
+        // 열매 수확할 친구가 남아 있을 때,
+        pickFruits(friendIdx + 1, friendsCount, 0, friendPositions[friendIdx + 1][0], friendPositions[friendIdx + 1][1], fruitSum);
       }
-      pickAppleInThreeSecond(0, friendCnt + 1, friendPos[friendCnt + 1][0], friendPos[friendCnt + 1][1], tmpApplSum);
       return;
     }
 
     for (int d = 0; d < 4; d++) {
-      int nr = r + dr[d];
-      int nc = c + dc[d];
+      int nextR = row + dr[d];
+      int nextC = col + dc[d];
 
-      if (isInBoard(nr, nc)) {
-        int appleValue = appleTrees[nr][nc];
-        appleTrees[nr][nc] = 0;
-        pickAppleInThreeSecond(time + 1, friendCnt, nr, nc, tmpApplSum + appleValue);
-        appleTrees[nr][nc] = appleValue;
-      }
+      if (!isInBoard(nextR, nextC)) continue; // 범위가 벗어나면 pass
+
+      // 해당 위치로 가서 열매를 수확한다. 그럼 그 나무는 열매값이 0으로 된다.
+      int curFruit = tree[nextR][nextC];
+      tree[nextR][nextC] = 0;
+      pickFruits(friendIdx, friendsCount, time + 1, nextR, nextC, fruitSum + curFruit);
+      // 다시 복구
+      tree[nextR][nextC] = curFruit;
     }
+
+  }
+
+  private static boolean isInBoard(int row, int col) {
+    return row >= 0 && row < tree.length && col >= 0 && col < tree.length;
   }
 }
