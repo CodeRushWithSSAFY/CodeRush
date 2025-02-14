@@ -46,17 +46,6 @@ public class Main {
                 int nextFriendCol = friends.get(friendsIndex + 1)[1];
                 backTracking(friendsIndex + 1, nextFriendRow, nextFriendCol, sum + board[nextFriendRow][nextFriendCol], 0);
             } else {
-                if (sum == 663) {
-                    for (int i = 0; i < n; i++) {
-                        for (int j = 0; j < n; j++) {
-                            for (int k = 0; k < 4; k++)
-                                System.out.print(visitedTime[i][j][k]);
-                            System.out.print("   ");
-                        }
-                        System.out.println();
-                    }
-                    
-                }
                 result = Math.max(result, sum);
             }
             return ;
