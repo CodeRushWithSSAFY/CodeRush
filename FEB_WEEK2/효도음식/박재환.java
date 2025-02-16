@@ -1,66 +1,90 @@
-import java.io.*;
+
 import java.util.*;
+import java.io.*;
 
-/*
-    총 음식 2개이고 각 음식의 재료는 인접하면 안되므로 인접되지 않도록 최소 공간 1개를 띄워야한다.
-    -> 공간을 기준을 잡아서 앞 -> / 뒤 <-로 최대값을 찾아보자 ??
-    공간의 기준은 index가 0 base일 때 1부터 N - 2이다.. 왜냐? 재료는 최소 1개이상 써서 요리를 만들어야 하기 때문에.
-*/
+// Softeer Lv.3
+// 효도 음식
+// https://softeer.ai/practice/7367
 public class 박재환 {
-    public static void main(String[] args)  throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static BufferedReader br;
+    static BufferedWriter bw;
+    static int itemNum;
+    static int[] items;
+    public static void main(String[] args) throws IOException {
+        박재환 problem = new 박재환();
 
-        int ingredientsCount = Integer.parseInt(br.readLine().trim());
-        String[] ingredientsStringSplit = br.readLine().trim().split(" ");
-        int[] ingredients = new int[ingredientsCount];
-        for (int idx = 0; idx < ingredientsCount; idx++) {
-            ingredients[idx] = Integer.parseInt(ingredientsStringSplit[idx]);
+        br = new BufferedReader(new InputStreamReader(System.in));
+        bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        // 재료의 개수를 입력 받는다.
+        itemNum = Integer.parseInt(br.readLine().trim());
+        // 재료 개수 배열 초기화
+        items = new int[itemNum];
+
+        // 재료를 입력 받는다.
+        StringTokenizer st = new StringTokenizer(br.readLine().trim());
+        for(int idx=0; idx < itemNum; idx++) {
+            items[idx] = Integer.parseInt(st.nextToken());
         }
-
         br.close();
 
-        // ⚠️ 해당 부분은
-        // 비워야하는 공간의 idx를 기준으로 첫번째 메뉴와 두번째 메뉴의 최대값의 합을 구한 뒤
-        // 최대값인 값으로 갱신한다.
-        long maxSum = Long.MIN_VALUE;
-        for (int spaceIdx = 1; spaceIdx < ingredientsCount - 1; spaceIdx++) {
-            maxSum = Math.max(maxSum, makeMenu(spaceIdx, ingredients));
-        }
-
+        bw.write(String.valueOf(problem.findMaxValue()));
         bw.flush();
-        bw.write(String.valueOf(maxSum));
         bw.close();
     }
-    private static long makeMenu(int spaceIdx, int[] ingredients) {
-        // 비워야하는 공간 idx 이전 재료 값들에 대해서
-        // firstMenu로 만들 수 있는데 이때 firstMenuSatisfy를 최대값으로 만들어야한다.
-        long firstMenuSatisfy = 0;
-        // 0 ~ spaceIdx - 1의 배열에서 최댓값의 합 구하기
-        // 1. 슬라이딩 윈도우 ??
-        // 2. 투포인터 ??
-        // 1과 2는 구간이 정해져있을 때하기 편한 듯?
-        // 3. 카데인 알고리즘
-        long maxCurSum = ingredients[0];
-        long maxTotalSum = ingredients[0];
-        for (int idx = 1; idx < spaceIdx; idx++) {
-            maxCurSum = Math.max(ingredients[idx], maxCurSum + ingredients[idx]);
-            maxTotalSum = Math.max(maxTotalSum, maxCurSum);
-        }
-        firstMenuSatisfy = maxTotalSum;
 
-        // 비워야하는 공간 idx 이후 재료 값들에 대해서
-        // secondMenu로 만들 수 있는데 이때 secondMenuSatisfy 최대값으로 만들어야한다.
-        // spaceIdx + 1 ~ N - 1(배열의 길이 N)의 배열에서 최댓값의 합 구하기
-        long secondMenuSatisfy = 0;
-        maxCurSum = ingredients[spaceIdx + 1];
-        maxTotalSum = ingredients[spaceIdx + 1];
-        for (int idx = spaceIdx + 2; idx < ingredients.length; idx++) {
-            maxCurSum = Math.max(ingredients[idx], maxCurSum + ingredients[idx]);
-            maxTotalSum = Math.max(ma환xTotalSum, maxCurSum);
-        }
-        secondMenuSatisfy = maxTotalSum;
+    long answer;
+    public long findMaxValue() {
+        long[] leftMax = new long[itemNum];
+        long[] rightMax = new long[itemNum];
 
-        return firstMenuSatisfy + secondMenuSatisfy;
+        // 1. 0 번째 부터 i 번째 까지 최대합을 구한다.
+        long nowMax = items[0];
+        leftMax[0] = nowMax;
+        for(int idx=1; idx<itemNum; idx++) {
+            // 현재까지의 합 + 현재 위치의 값 과 현재 위치의 값 중 최대 값을 찾는다
+            // 현재 위치의 값이 더 큰 경우, 이전까지의 누적합을 버리고, 현재 위치의 값으로 최대 값을 갱신한다.
+            nowMax = Math.max(items[idx], items[idx] + nowMax);
+            //  위와 동일하다. 현재 위치까지의 최대 누적합을 갱신한다.
+            leftMax[idx] = Math.max(leftMax[idx-1], nowMax);
+        }
+
+        // 2. i 번째 부터 N 까지의 최대합을 구한다.
+        nowMax = items[itemNum-1];  // 가장 마지막 값 부터 구한다.
+        rightMax[itemNum-1] = nowMax;
+        for(int idx=itemNum-2; idx > -1; idx--) {
+            // 현재까지의 합 + 현재 위치의 값 과 현재 위치의 값 중 최대 값을 찾는다
+            // 현재 위치의 값이 더 큰 경우, 이전까지의 누적합을 버리고, 현재 위치의 값으로 최대 값을 갱신한다.
+            nowMax = Math.max(items[idx], nowMax + items[idx]);
+            rightMax[idx] = Math.max(rightMax[idx+1], nowMax);
+        }
+
+        answer = Long.MIN_VALUE;
+        for(int idx=0; idx<itemNum-2; idx++) {
+            answer = Math.max(leftMax[idx]+rightMax[idx+2], answer);
+        }
+
+        return answer;
     }
+
 }
+
+/*
+재료는 1~n 번까지 있음
+
+1. 요리는 연속한 재료들로만 만들 수 있다
+    이때 재료는 최소 1개 이상
+2. 서로 다른 요리에 사용되는 재료끼리 겹쳐서도, 인접해서도 안된다.
+
+⚠️ 요리는 두 개만 만든다.
+각 재료마다 부모님의 선호도가 정해져있다, 만족도는 두 요리에 쓰인 재료의 선호도의 총 합으로 정해진다.
+
+ex)
+6 ( 재료의 개수 )
+4 -6 1 2 -2 3 ( 재료들 )
+
+각 위치마다 현재 위치까지의 최대 값을 구한다?
+
+첫번째 요리부터 i 번쨰 요리까지 부분배열의 최대 합을 구한다
+i 번째부터 n 까지의 최대 합을 구한다.
+*/
