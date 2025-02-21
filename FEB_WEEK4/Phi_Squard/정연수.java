@@ -53,11 +53,13 @@ public class Main {
                     }
                     continue;
                 }
+                // cur의 origin은 size와 같다.
                 if (front.origin >= cur.origin) {
                     front.size += cur.size;
                     tmp.add(new Phi(0, 0));
                     continue;
                 }
+                // 앞의 미생물이 나를 먹을때는 갱신전의 미생물 크기 기준으로 행야합니다.
                 if (front.size <= cur.origin) {
                     front.size += cur.size;
                     front.index = cur.index;
