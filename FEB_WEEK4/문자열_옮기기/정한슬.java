@@ -13,6 +13,7 @@ import java.util.*;
    	abcde , 3 -> deabc
     0~2 | 3~4
     substring(0, X), substring(X, length() - 1)
+    2. 음수일 때
     앞 | 뒤로 나누되
     abcde -3 ->edcab
     X = lengt() + X로 바꾼뒤 뒤에것만 수정
