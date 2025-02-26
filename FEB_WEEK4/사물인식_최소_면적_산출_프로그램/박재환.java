@@ -62,12 +62,6 @@ public class 박재환 {
     (현재 탐색중인 색상 idx, x의 최대, y의 최대, x의 최소, y의 최소)
      */
     private static void findMinArea(int colorIdx, int maxX, int maxY, int minX, int minY) {
-        // 현재 면적이 최소 면적보다 작으면 종료
-        // 더 이상 탐색할 가치가 없다
-        if(minArea < (maxX-minX) * (maxY-minY)) {
-            return;
-        }
-
         // 모든 색상을 탐색한 경우
         if(colorIdx == colorNums+1) {
             // 최소값을 갱신한다.
@@ -81,6 +75,12 @@ public class 박재환 {
             int nMaxY = Math.max(maxY, point[1]);
             int nMinX = Math.min(minX, point[0]);
             int nMinY = Math.min(minY, point[1]);
+
+            // 현재 면적이 최소 면적보다 작으면 종료
+            // 더 이상 탐색할 가치가 없다
+            if(minArea <= (nMaxX-nMinX) * (nMaxY-nMinY)) {
+                continue;
+            }
 
             // 다음 탐색을 진행한다.
             findMinArea(colorIdx+1, nMaxX, nMaxY, nMinX, nMinY);
