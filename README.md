@@ -2,7 +2,7 @@
 
 ## 🏆 스터디 개요  
 - **목표**: 알고리즘 문제 풀이 실력 향상 및 효율적인 코드 리뷰 진행  
-- **운영 방식**: 주 6문제 풀이 + 코드 리뷰 및 피드백  
+- **운영 방식**: 주 5문제 풀이 + 코드 리뷰 및 피드백  
 - **리뷰 일정**: 매주 **목요일** 진행  
 
 ---
@@ -10,7 +10,6 @@
 ## 👥 스터디 멤버  
 | 이름   | GitHub 닉네임 |
 |--------|--------------|
-| 김준혁 | [peridot0810](https://github.com/peridot0810) |
 | 박재환 | [ParkJaeHwan-906](https://github.com/ParkJaeHwan-906) |
 | 이수빈 | [200516bb](https://github.com/200516bb) |
 | 정연수 | [cheesecrust](https://github.com/cheesecrust) |
@@ -20,7 +19,7 @@
 
 ## 🚀 스터디 운영 방식  
 ### 📌 1. 주간 문제 풀이  
-- **일주일에 6문제 풀이**  
+- **일주일에 5문제 풀이**  
 - 각 팀원이 **1문제씩 담당하여 목요일 회의에서 설명할 수 있도록 완벽히 이해하는 것**이 목표.  
 
 ### 📌 2. 브랜치 및 PR 운영  
@@ -31,25 +30,76 @@
   - 주차별 PR을 모두 확인하고 **코멘트, 이모지, 확인 표시**로 리뷰 진행  
 - **PR 제목 형식:**
    -  [주차] 문제 이름 - 닉네임
-   - 예시:  `[2주차] 나무 섭지 - 정한슬`
+   - 예시:  `[3주차] 나무 섭지 - 정한슬`
 - **PR 내용:** PR 템플릿 활용  
 - **PR Merge 규칙:**  주 회의(목요일) 후 모든 PR Merge
 ### 📌 3. 문제 풀이 후 Push 방법
 - 본인의 코드를 스터디 저장소에 **주차별 폴더**와 **문제 이름** 기준으로 정리합니다.
-- 파일 경로 규칙: `FEB_1WEEK/문제이름`
-   - 예시: `FEB_WEEK1/비밀메뉴2`
+- 파일 경로 규칙: `MAR_WEEK1/문제이름`
+   - 예시: `MAR_WEEK1/비밀메뉴2`
 -  각 주차별로 동일한 구조를 유지
-   - 1주차: `FEB_WEEK1/`
-   - 2주차: `FEB_WEEK2/`
-   - 3주차: `FEB_WEEK3/`
-   - 4주차: `FEB_WEEK4/`
+   - 1주차: `MAR_WEEK1/`
+   - 2주차: `MAR_WEEK2/`
+   - 3주차: `MAR_WEEK3/`
+   - 4주차: `MAR_WEEK4/`
 - 파일명 규칙: `이름.java`
-   - 예시: `FEB_WEEK1/비밀메뉴2/정한슬.java`
+   - 예시: `MAR_WEEK1/비밀메뉴2/정한슬.java`
 - 코드 공유가 목적이므로 commit message 제한은 두지 않겠습니다.
 
-📢 **공지:**  
-✅ 본 규칙은 **2주차(FEB_2WEEK)부터 적용됩니다.**  
-✅ 1주차(FEB_1WEEK) 문제는 기존 방식대로 진행되었습니다.  
+### 📢 **공지:**  
+✅ 3월 1주차는 월말평가 문제를 풀이하는 것으로 대체하였습니다.
+
+## 3월 1주차 (3월 3일 ~ 3월 6일)
+- **3월 1주차는 아래 2문제 중 1문제만 풀어도 되고, 둘 다 풀어도 무방합니다.**  
+- 본인 상황에 맞춰 자유롭게 선택하세요!
+
+| 날짜       | 문제 이름       | 문제 링크 |
+|------------|--------------|-----------|
+| 3월 6일 (목) | 안전 영역 | [문제 링크](https://www.acmicpc.net/problem/2468) |
+| 3월 6일 (목) | 곡선 자르기 | [문제 링크](https://www.acmicpc.net/problem/14865) |
+
+---
+
+## 3월 2주차 (3월 7일 ~ 3월 13일)  
+📢 **목요일(3월 13일)에 코드 리뷰 진행**  
+
+| 날짜       | 문제 이름                        | 문제 링크 |
+|------------|----------------------------------|-----------|
+| 3월 7일 (금)  | 정수 삼각형 | [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/43105) |
+| 3월 9일 (일)  | 땅따먹기 | [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12913) |
+| 3월 10일 (월) | 석유 시추 | [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/250136) |
+| 3월 11일 (화) | 서버 증설 횟수 | [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/389479) |
+| 3월 12일 (수) | 캐시 | [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17680) |
+
+---
+
+## 3월 3주차 (3월 14일 ~ 3월 20일)  
+📢 **목요일(3월 20일)에 코드 리뷰 진행**  
+
+| 날짜       | 문제 이름                        | 문제 링크 |
+|------------|----------------------------------|-----------|
+| 3월 14일 (금) | TBD | TBD |
+| 3월 16일 (일) | TBD | TBD |
+| 3월 17일 (월) | TBD | TBD |
+| 3월 18일 (화) | TBD | TBD |
+| 3월 19일 (수) | TBD | TBD |
+
+---
+
+## 3월 4주차 (3월 21일 ~ 3월 27일)  
+📢 **목요일(3월 27일)에 코드 리뷰 진행**  
+
+| 날짜       | 문제 이름                        | 문제 링크 |
+|------------|----------------------------------|-----------|
+| 3월 21일 (금) | TBD | TBD |
+| 3월 23일 (일) | TBD | TBD |
+| 3월 24일 (월) | TBD | TBD |
+| 3월 25일 (화) | TBD | TBD |
+| 3월 26일 (수) | TBD | TBD |
+
+### 📅 지난 스터디 기록 (2월)
+<details>
+<summary>🔽 2월 스터디 기록 보기</summary>
 
 ## 2월 1주차 (2월 3일 ~ 2월 9일)
 | 날짜       | 문제 이름                        | 문제 링크 |
@@ -89,22 +139,5 @@
 | 2월 27일 (목) | SWEA 1230 암호문3               | [문제 링크](https://swexpertacademy.com/main/code/problem/problemList.do) |
 | 2월 28일 (금) |                                |                                           |
 | 3월 1일 (토) |                                |                                           |
+</details>
 
-## 추가 문제 (Level 4)
-아래는 Level 4 문제들입니다. 필요 시 보충 문제로 활용하세요:
-- [빨리 기다리기](https://softeer.ai/practice/7705)
-- [산타의 텔레포트](https://softeer.ai/practice/7420)
-- [활자 그래프](https://softeer.ai/practice/7704)
-- [ChatGPT의 역작](https://softeer.ai/practice/9503)
-- [더블! 산타 외판원 순회](https://softeer.ai/practice/7585)
-- [나무 막대](https://softeer.ai/practice/7596)
-- [약속 시간](https://softeer.ai/practice/9505)
-- [선물 나눠주기 (Easy)](https://softeer.ai/practice/9665)
-- [사이클 없는 그래프 만들기](https://softeer.ai/practice/7701)
-- [트럭](https://softeer.ai/practice/6260)
-- [Pay2Win](https://softeer.ai/practice/7706)
-- [H-클린알파](https://softeer.ai/practice/6278)
-- [지우는 소수를 좋아해](https://softeer.ai/practice/6272)
-- [탑의 높이](https://softeer.ai/practice/11003)
-- [징검다리2](https://softeer.ai/practice/6290)
-- [복잡한 조립라인1](https://softeer.ai/practice/6286)
