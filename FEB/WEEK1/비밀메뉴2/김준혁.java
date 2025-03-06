@@ -1,5 +1,3 @@
-package solution;
-
 import java.util.*;
 
 
