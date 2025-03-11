@@ -25,17 +25,17 @@ public class 박재환 {
 
                 // 추가적인 증설이 필요한다.
                 if(player/m > allocatedServer.size()) {
-                    System.out.println(time);
+//                    System.out.println(time);
                     // 추가로 필요한 서버의 대수
                     int needs = player/m  - allocatedServer.size();
                     // 현재 생성되는 서버의 유지 시간
                     int holdingTime = time + k - 1;
-                    System.out.println(holdingTime);
+//                    System.out.println(holdingTime);
                     for(int server=0; server < needs; server++) {
                         allocatedServer.offer(holdingTime);
                     }
                 }
-                System.out.println(allocatedServer);
+//                System.out.println(allocatedServer);
 
                 // 증설이 필요 없는 경우
 
