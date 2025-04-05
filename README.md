@@ -46,6 +46,25 @@
 
 ## 📅 문제 목록
 
+### 주차 상관없이 풀이 (추가 구성)
+for 연수, 재환
+| 문제 이름 | 문제 링크 |
+|-----------|-----------|
+| 친구 네트워크 | [BOJ 4195](https://www.acmicpc.net/problem/4195) |
+| 사이클 게임 | [BOJ 20040](https://www.acmicpc.net/problem/20040) |
+| 행성 터널 | [BOJ 2887](https://www.acmicpc.net/problem/2887) |
+| 별자리 만들기 | [BOJ 4386](https://www.acmicpc.net/problem/4386) |
+| 우주신과의 교감 | [BOJ 1774](https://www.acmicpc.net/problem/1774) |
+| 타임머신 | [BOJ 11657](https://www.acmicpc.net/problem/11657) |
+| 웜홀 | [BOJ 1865](https://www.acmicpc.net/problem/1865) |
+| 운동 | [BOJ 1956](https://www.acmicpc.net/problem/1956) |
+| 가장 긴 증가하는 부분 수열 2 | [BOJ 12015](https://www.acmicpc.net/problem/12015) |
+| 가장 긴 증가하는 부분 수열 3 | [BOJ 12738](https://www.acmicpc.net/problem/12738) |
+| 가장 긴 증가하는 부분 수열 4 | [BOJ 14002](https://www.acmicpc.net/problem/14002) |
+| 전화번호 목록 | [BOJ 5052](https://www.acmicpc.net/problem/5052) |
+| 개미굴 | [BOJ 14725](https://www.acmicpc.net/problem/14725) |
+
+
 ### ✅ 4월 1주차 (4/2~4/4) — 리뷰: 4/7(월)
 
 | 날짜 | 문제 이름 | 문제 링크 |
