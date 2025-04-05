@@ -86,7 +86,6 @@ public class 박재환 {
                 pq.offer(new int[] {connNode, dist[connNode]});
             }
         }
-
         printDist(dist);
     }
 
