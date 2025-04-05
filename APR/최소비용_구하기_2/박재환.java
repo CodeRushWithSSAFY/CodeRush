@@ -88,7 +88,6 @@ public class 박재환 {
 //			System.out.println();
 //		}
     }
-
     static void getMinCost() {
         // Node 의 가중치를 기준으로 오름차순 정렬
         PriorityQueue<Node> pq = new PriorityQueue<>();
