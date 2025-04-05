@@ -34,7 +34,6 @@ public class 박재환 {
 
             if(set.contains(str)) matchCnt++;
         }
-
         System.out.println(matchCnt);
     }
 
