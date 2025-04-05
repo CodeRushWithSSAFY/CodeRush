@@ -25,7 +25,6 @@ public class 박재환 {
             items[item][0] = Integer.parseInt(st.nextToken());
             items[item][1] = Integer.parseInt(st.nextToken());
         }
-
         getMaxItems();
     }
 
