@@ -27,7 +27,6 @@ public class 박재환 {
             graph[i] = new ArrayList<int[]>();
         }
 
-
         while(edges-- > 0) {
             st = new StringTokenizer(br.readLine().trim());
 
