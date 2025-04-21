@@ -6,14 +6,6 @@ public class Main {
     static int[] dp = new int[1002];
     static int[] dp2 = new int[1002];
     
-    static int max(int a, int b) {
-        if (a < b) {
-            return b;
-        } else {
-            return a;
-        }
-    }
-    
     static void left(int N) {
         for (int i = 1; i <= N; i++) {
             dp[i] = 1;
