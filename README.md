@@ -107,7 +107,7 @@ for 연수, 재환
 | 4/23 (수) | 점프 | [BOJ 1890](https://www.acmicpc.net/problem/1890) |
 | 4/24 (목) | 동전 1 | [BOJ 2293](https://www.acmicpc.net/problem/2293) |
 | 4/25 (금) | 특정한 최단 경로 | [BOJ 1504](https://www.acmicpc.net/problem/1504) |
-| 4/26 (토) | 두 번째로 작은 스패닝 트리 | [BOJ 1198](https://www.acmicpc.net/problem/1198) |
+| 4/26 (토) | 삼각형으로 자르기 | [BOJ 1198](https://www.acmicpc.net/problem/1198) |
 
 
 ### 📅 지난 스터디 기록
