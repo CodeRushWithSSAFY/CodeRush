@@ -61,11 +61,11 @@
 
 | 번호 | 문제 이름 | 링크 |
 |------|-----------|------|
-| 1 |  | [바로가기](./MAY/WEEK2/) |
-| 2 |  | [바로가기](./MAY/WEEK2/) |
-| 3 |  | [바로가기](./MAY/WEEK2/) |
-| 4 |  | [바로가기](./MAY/WEEK2/) |
-| 5 |  | [바로가기](./MAY/WEEK2/) |
+| 1 | 불! | [바로가기](https://www.acmicpc.net/problem/4179) |
+| 2 | 파티 | [바로가기](https://www.acmicpc.net/problem/1238) |
+| 3 | 고층 건물 | [바로가기](https://www.acmicpc.net/problem/1027) |
+| 4 | 우주신과의 교감 | [바로가기](https://www.acmicpc.net/problem/1774) |
+| 5 | 하늘에서 별똥별이 빗발친다 | [바로가기](https://www.acmicpc.net/problem/14658) |
 
 ---
 
@@ -73,11 +73,11 @@
 
 | 번호 | 문제 이름 | 링크 |
 |------|-----------|------|
-| 1 |  | [바로가기](./MAY/WEEK3/) |
-| 2 |  | [바로가기](./MAY/WEEK3/) |
-| 3 |  | [바로가기](./MAY/WEEK3/) |
-| 4 |  | [바로가기](./MAY/WEEK3/) |
-| 5 |  | [바로가기](./MAY/WEEK3/) |
+| 1 | 동전 분배  | [바로가기](https://www.acmicpc.net/problem/1943) |
+| 2 | 로봇 조종하기 | [바로가기](https://www.acmicpc.net/problem/2169) |
+| 3 | 보석 도둑 | [바로가기](https://www.acmicpc.net/problem/1202) |
+| 4 | 비슷한 단어 | [바로가기](https://www.acmicpc.net/problem/2179) |
+| 5 | 횡단보도  | [바로가기](https://www.acmicpc.net/problem/24042) |
 
 ---
 
